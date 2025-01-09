@@ -24,7 +24,7 @@ Before starting this  project, make sure you have and know  the following:
 
 ## Project Architecture
 
-![alt text](/proj-achitecture.png)
+![alt text](./proj-achitecture.png)
 The architecture involves:
 
 AWS Lambda as the backend processor.
