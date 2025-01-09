@@ -8,10 +8,10 @@ This application  is a game notification/alert system  that sends out NBA games 
 
 ## Project Services/Technology 
 This project uses the following services 
-- AWS Lambda: 
-- Amazon SNS:
-- Amazon EvenBridge: 
-- NBA APIs :
+- AWS Lambda: Executes the backend logic to  retrive the data from the NBA API and publishing  notifications to the SNS topic.
+- Amazon SNS: Sends notifications to subscribers via email or SMS.
+- Amazon EvenBridge: Schedules notifications at specified intervals to invoke the lambda function.
+- NBA APIs : Contains  real-time NBA game scores and updates.
 
 ## Project Prerequisites
  
@@ -23,6 +23,17 @@ Before starting this  project, make sure you have and know  the following:
 4. A **Basic understanding of Python**: You will need some basic knowledge of python programming  
 
 ## Project Architecture
+
+![alt text](/proj-achitecture.png)
+The architecture involves:
+
+AWS Lambda as the backend processor.
+
+Amazon SNS for distributing notifications.
+
+Amazon EventBridge for triggering Lambda functions on a schedule.
+
+NBA API integration to fetch game scores.
 
 ## Steps to Create/Build and and run the App. 
 
@@ -115,3 +126,42 @@ Before starting this  project, make sure you have and know  the following:
 
 
 ## Troubleshooting
+Common Issues and Solutions
+
+### 1. Email/SMS Notifications Not Received:
+
+    Ensure the email address or phone number is subscribed to the SNS topic.
+
+    Verify email confirmation was completed.
+
+    Check your spam folder for the email confirmation link.
+
+### 2 Invalid API Key Error:
+
+    Verify that the NBA API key is correctly set in the Lambda environment variables.
+
+    Confirm your SportsData.io account is active and the API key is valid.
+
+### 3 Lambda Execution Errors:
+
+    Check the Lambda execution logs in Amazon CloudWatch for detailed error messages.
+
+    Ensure the IAM role assigned to Lambda has the necessary permissions.
+
+### 4. EventBridge Rule Not Triggering:
+
+    Verify the cron expression used in the EventBridge rule.
+
+    Ensure the rule is enabled.
+
+### 5. SNS Policy Errors:
+
+    Confirm that the gd_sns_policy has the correct ARN and permissions.
+
+    Update the IAM policy to match the required permissions.
+
+### 6. High Latency or Delayed Notifications:
+
+    Test the SNS topic with minimal subscribers to identify performance bottlenecks.
+
+    Optimize the Lambda function code for better efficiency.
